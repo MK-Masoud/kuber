@@ -1,0 +1,47 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nodejs-nginx-pod
+  labels:
+    app: nodejs-nginx
+spec:
+  containers:
+  - name: nodejs
+    image: masoud.azurecr.io
+    ports:
+    - containerPort: 3000
+  - name: nginx
+    image: masoud.azurecr.io
+    ports:
+    - containerPort: 80
+  initContainers:
+  - name: nginx-config
+    image: masoud.azurecr.io
+    command: ["sh", "-c"]
+    args:
+    - |
+      #!/bin/bash
+      echo 'server {
+        listen 80;
+        location / {
+          proxy_pass http://localhost:3000;
+          proxy_http_version 1.1;
+          proxy_set_header Upgrade $http_upgrade;
+          proxy_set_header Connection 'upgrade';
+          proxy_set_header Host $host;
+          proxy_cache_bypass $http_upgrade;
+        }
+      }' > /etc/nginx/conf.d/default.conf
+   
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nodejs-nginx-service
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 80
+  selector:
+    app: nodejs-nginx
