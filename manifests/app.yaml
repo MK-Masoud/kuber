@@ -7,16 +7,16 @@ metadata:
 spec:
   containers:
   - name: nodejs
-    image: masoud.azurecr.io
+    image: masoud.azurecr.io/masoud:latest
     ports:
     - containerPort: 3000
   - name: nginx
-    image: masoud.azurecr.io
+    image: masoud.azurecr.io/masoud:latest
     ports:
     - containerPort: 80
   initContainers:
   - name: nginx-config
-    image: masoud.azurecr.io
+    image: masoud.azurecr.io/masoud:latest
     command: ["sh", "-c"]
     args:
     - |
