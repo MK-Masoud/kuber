@@ -37,3 +37,10 @@ stages:
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
+    - task: KubernetesManifest@1
+      inputs:
+          action: 'deploy'
+          connectionType: 'kubernetesServiceConnection'
+          kubernetesServiceConnection: 'kuber'
+          namespace: 'default'
+          manifests: '$(Build.Source.Directory)/kuber/yamls/app.yaml'
