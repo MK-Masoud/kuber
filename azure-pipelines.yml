@@ -43,4 +43,4 @@ stages:
         kubernetesServiceConnection: 'kuber'
         namespace: 'default'
         manifests: |
-         $(Build.SourcesDirectory)/kuber/manifests/app.yaml
+         $(Build.SourcesDirectory)/aks/kuber/manifests/app.yaml
