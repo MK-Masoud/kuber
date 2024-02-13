@@ -43,4 +43,4 @@ stages:
           connectionType: 'kubernetesServiceConnection'
           kubernetesServiceConnection: 'kuber'
           namespace: 'default'
-          manifests: '$(Build.Source.Directory)/kuber/yamls/app.yaml'
+          manifests: 'app.yaml'
