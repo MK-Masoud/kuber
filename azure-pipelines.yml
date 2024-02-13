@@ -13,7 +13,7 @@ variables:
   dockerRegistryServiceConnection: '4dbbb26a-95a6-49c7-857a-8f0af7f988f1'
   imageRepository: 'masoud'
   containerRegistry: 'masoud.azurecr.io'
-  dockerfilePath: '$(Build.SourcesDirectory)/kuber/**Dockerfile'
+  dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
   tag: '$(Build.BuildId)'
 
   # Agent VM image name
