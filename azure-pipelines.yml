@@ -37,6 +37,10 @@ stages:
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
+- stage: Deploy   # ezafe kardam dasti#
+  jobs:   # ezafe kardam dasti#
+  - job: deploy   # ezafe kardam dasti#
+    steps:   # ezafe kardam dasti#
     - task: KubernetesManifest@0
       inputs:
         action: 'deploy'
