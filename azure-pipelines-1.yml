@@ -37,3 +37,18 @@ stages:
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
+- stage: Deploy
+  jobs: 
+  - job: Deploy
+    steps:
+      - task: UsePythonVersion@0
+        inputs:
+           versionSpec: '3.x'
+           addToPath: true
+      - script: |
+         terraform init
+         terraform apply --auto-approve
+
+
+
+      
